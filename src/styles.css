@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+body {
+  background-color: cornflowerblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+
+.header {
+  font-size: 48px;
+  font-weight: bolder;
+  color: white;
+  padding: 50px 0;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 5px;
+}
+
+.container {
+  position: relative;
+}
+
+.searchbar {
+  width: 500px;
+  background-color: white;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  padding: 5px;
+}
+
+.searchbar input {
+  font-size: 18px;
+  padding: 2px 10px;
+  border: none;
+  outline: none;
+  background-color: inherit;
+}
+
+.searchbar button {
+  border: none;
+  background-image: url(images/magnify.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: inherit;
+}
