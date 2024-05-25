@@ -1,3 +1,5 @@
+import { displayWeatherResult, displayError } from "./dom";
+
 const API_KEY = "4008195c51d44444ac4134527242005";
 
 const getWeather = async function getWeather(location) {
@@ -16,9 +18,10 @@ const getWeather = async function getWeather(location) {
     const temp_c = data.current.temp_c;
     const temp_f = data.current.temp_f;
 
-    console.log({locationName, country, condition, temp_c, temp_f});
+    displayWeatherResult({locationName, country, condition, temp_c, temp_f});
   } catch (error) {
     console.log(error);
+    displayError();
   }
 };
 

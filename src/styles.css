@@ -9,21 +9,25 @@ body {
   background-color: cornflowerblue;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 100px;
+  padding: 50px;
 }
 
 .header {
   font-size: 48px;
   font-weight: bolder;
   color: white;
-  padding: 50px 0;
+  padding: 20px 0;
   font-family: 'Courier New', Courier, monospace;
   letter-spacing: 5px;
+  text-align: center;
 }
 
 .container {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 }
 
 .searchbar {
@@ -49,4 +53,41 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-color: inherit;
+}
+
+.result {
+    font-size: 24px;
+    height: 500px;
+    align-self: stretch;
+    padding: 20px 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.temperature {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.temperature button {
+    border: none;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-family: inherit;
+    background-color: white;
+    color: cornflowerblue;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.temperature button:hover{
+    background-color: rgb(230, 230, 230);
+}
+
+
+img[src=""] {
+    display: none;
 }
