@@ -96,7 +96,7 @@ body {
 }
 
 .result {
-    font-size: 24px;
+    font-size: 20px;
     height: 500px;
     align-self: stretch;
     padding: 20px 250px;
@@ -107,24 +107,17 @@ body {
 }
 
 .temperature {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  display: none;
 }
 
-.toggleTemp {
-    border: none;
-    padding: 2px 5px;
-    font-size: 12px;
-    font-family: inherit;
-    background-color: white;
-    color: cornflowerblue;
-    font-weight: bold;
-    border-radius: 4px;
+.show {
+  display: block;
 }
 
-.toggleTemp:hover{
-    background-color: rgb(230, 230, 230);
+.condition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
