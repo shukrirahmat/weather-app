@@ -14,13 +14,53 @@ body {
 }
 
 .header {
-  font-size: 48px;
-  font-weight: bolder;
-  color: white;
-  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  padding: 25px 0;
+}
+
+.header p {
   font-family: 'Courier New', Courier, monospace;
   letter-spacing: 5px;
-  text-align: center;
+  font-weight: bolder;
+  font-size: 48px;
+  color: white;
+}
+
+.header .togglebox {
+  position: relative;
+  top: 4px;
+  align-self: center;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.togglebtn {
+  font-size: 16px;
+  border: none;
+  padding: 2px 5px;
+  font-weight: bold;
+  color: cornflowerblue;
+  background-color: white;
+}
+
+.togglebtn.celcius {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.togglebtn.fahrenheit {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.currentUnit {
+  background-color: rgb(60, 109, 197);
+  color: white;
 }
 
 .container {
@@ -72,7 +112,7 @@ body {
     gap: 20px;
 }
 
-.temperature button {
+.toggleTemp {
     border: none;
     padding: 2px 5px;
     font-size: 12px;
@@ -83,7 +123,7 @@ body {
     border-radius: 4px;
 }
 
-.temperature button:hover{
+.toggleTemp:hover{
     background-color: rgb(230, 230, 230);
 }
 

@@ -12,6 +12,8 @@ const getWeather = async function getWeather(location) {
     );
     const data = await response.json();
 
+    console.log(data);
+
     const locationName = data.location.name;
     const country = data.location.country;
     const condition = data.current.condition.text;

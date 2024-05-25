@@ -3,13 +3,28 @@ import getWeather from "./getWeather";
 const locationInput = document.querySelector("#location");
 const searchButton = document.querySelector(".searchbar button");
 const resultBox = document.querySelector(".result");
+const togglebtn = document.querySelectorAll(".togglebtn");
 
 const addEvents = function addEvents() {
   searchButton.addEventListener("click", (event) => {
     getWeather(locationInput.value);
     event.preventDefault();
   });
+
+  togglebtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!btn.classList.contains("currentUnit")) {
+        switchUnit();
+      }
+    })
+  })
 };
+
+const switchUnit = function switchUnit() {
+  togglebtn.forEach((btn) => {
+    btn.classList.toggle("currentUnit");
+  })
+}
 
 const displayWeatherResult = function displayWeatherResult(weather) {
   while (resultBox.firstChild) {
