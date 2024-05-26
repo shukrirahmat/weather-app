@@ -88,7 +88,7 @@ const loadCurrentResult = function loadCurrentResult(data, div) {
   date.textContent = format(data.location.localtime, "PPPP p");
 
   const image = document.createElement("img");
-  image.src = "http:" + data.current.condition.icon;
+  image.src = "https:" + data.current.condition.icon;
 
   const condition = document.createElement("div");
   condition.textContent = data.current.condition.text;
@@ -121,7 +121,7 @@ const loadHourlyResult = function loadHourlyResult(data, container) {
     const time = document.createElement("div");
     time.textContent = format(obj.time, "p");
     const image = document.createElement("img");
-    image.src = "http:" + obj.condition.icon;
+    image.src = "https:" + obj.condition.icon;
     const condition = document.createElement("p");
     condition.textContent = obj.condition.text;
 
@@ -159,7 +159,7 @@ const loadUpcomingResult = function loadUpcomingResult(data, container) {
     date.textContent = format(fday.date, "PPPP");
 
     const image = document.createElement("img");
-    image.src = "http:" + fday.day.condition.icon;
+    image.src = "https:" + fday.day.condition.icon;
 
     const condition = document.createElement("div");
     condition.textContent = fday.day.condition.text;
