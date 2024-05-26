@@ -1,8 +1,9 @@
 import getWeather from "./getWeather";
+import {format} from "date-fns";
 
 const locationInput = document.querySelector("#location");
 const searchButton = document.querySelector(".searchbar button");
-const resultBox = document.querySelector(".result");
+const resultBox = document.querySelector(".resultbox");
 const togglebtn = document.querySelectorAll(".togglebtn");
 
 const addEvents = function addEvents() {
@@ -17,8 +18,8 @@ const addEvents = function addEvents() {
       if (!btn.classList.contains("currentUnit")) {
         switchUnit();
       }
-    })
-  })
+    });
+  });
 };
 
 const switchUnit = function switchUnit() {
@@ -26,66 +27,86 @@ const switchUnit = function switchUnit() {
 
   togglebtn.forEach((btn) => {
     btn.classList.toggle("currentUnit");
-  })
+  });
   temperature.forEach((node) => {
     node.classList.toggle("show");
-  })
-}
+  });
+};
 
-const displayWeatherResult = function displayWeatherResult(weather) {
+const clearResultBox = function clearResultBox() {
   while (resultBox.firstChild) {
     resultBox.firstChild.remove();
   }
+};
 
-  const time = document.createElement("div");
-  time.textContent = weather.time;
+const displayWeatherResult = function displayWeatherResult(data) {
+  
+  clearResultBox();
 
-  const resultLocation = document.createElement("div");
-  resultLocation.classList.add("resultlocation");
-  resultLocation.textContent = `Location: ${weather.locationName}, ${weather.country}`;
+  const result = document.createElement("div");
+  result.classList.add("result");
 
-  const temperature_c = document.createElement("div");
+  const location = document.createElement('div');
+  location.classList.add('location');
+  location.textContent = `${data.location.name}, ${data.location.region}, ${data.location.country}`;
+
+  const currentHeader = document.createElement("div");
+  currentHeader.classList.add("head");
+  currentHeader.textContent = "Now";
+
+  const currentContent = document.createElement("div");
+  currentContent.classList.add("currentContent");
+  loadCurrentResult(data, currentContent);
+
+  result.appendChild(currentHeader);
+  result.appendChild(currentContent);
+  resultBox.appendChild(location);
+  resultBox.appendChild(result);
+};
+
+const loadCurrentResult = function loadCurrentResult(data, div) {
+
+  const date = document.createElement('div');
+  date.textContent = format(data.location.localtime, 'PPPP p');
+
+  const image = document.createElement('img');
+  image.src = "http:" + data.current.condition.icon;
+
+  const condition = document.createElement("div");
+  condition.textContent = data.current.condition.text;
+
+  const temperature_c = document.createElement('div');
   temperature_c.classList.add("temperature");
-  temperature_c.textContent = `Temperature: ${weather.temp_c} °C`;
-  const temperature_f = document.createElement("div");
+  temperature_c.textContent = data.current.temp_c + "°C";
+  const temperature_f = document.createElement('div');
   temperature_f.classList.add("temperature");
-  temperature_f.textContent = `Temperature: ${weather.temp_f} °F`;
+  temperature_f.textContent = data.current.temp_f + "°F";
   if (togglebtn[0].classList.contains("currentUnit")) {
     temperature_c.classList.add("show");
   } else {
     temperature_f.classList.add("show");
   }
-
-  const condition = document.createElement("div");
-  condition.classList.add("condition");
-  const conditionText = document.createElement("p");
-  conditionText.textContent = `Condition: ${weather.condition}`;
-  const conditionImage = document.createElement("img");
-  conditionImage.src = weather.imagesrc;
-  condition.appendChild(conditionText);
-  condition.appendChild(conditionImage);
-
-  resultBox.appendChild(time);
-  resultBox.appendChild(resultLocation);
-  resultBox.appendChild(temperature_c);
-  resultBox.appendChild(temperature_f);
-  resultBox.appendChild(condition);
-};
+  div.appendChild(date);
+  div.appendChild(image);
+  div.appendChild(condition);
+  div.appendChild(temperature_c);
+  div.appendChild(temperature_f);
+} 
 
 const displayError = function displayError() {
-  while (resultBox.firstChild) {
-    resultBox.firstChild.remove();
-  }
-  const errorText = document.createElement('p');
+  
+  clearResultBox();
+
+  const errorText = document.createElement("p");
   errorText.textContent = "Could not find the location";
   resultBox.appendChild(errorText);
 };
 
 const displayWait = function displayWait() {
-  while (resultBox.firstChild) {
-    resultBox.firstChild.remove();
-  }
-  const waitText = document.createElement('p');
+  
+  clearResultBox();
+
+  const waitText = document.createElement("p");
   waitText.textContent = "Please wait...";
   resultBox.appendChild(waitText);
 };
@@ -94,4 +115,4 @@ const domLoad = function domLoad() {
   addEvents();
 };
 
-export { domLoad, displayWeatherResult, displayError, displayWait};
+export { domLoad, displayWeatherResult, displayError, displayWait };
